@@ -1,40 +1,49 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>BFT Connect | Emploi du temps</title>
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>BFT Connect — Emploi du temps</title>
 
   <meta
     name="description"
-    content="BFT Connect — Votre emploi du temps sera bientôt disponible."
+    content="BFT Connect — L'emploi du temps sera bientôt disponible."
   >
 
   <style>
-    /* ========================================
+
+    /* ==================================================
        VARIABLES
-    ======================================== */
+    ================================================== */
 
     :root {
       --blue: #2563eb;
       --blue-dark: #1d4ed8;
-      --blue-light: #eff6ff;
+      --blue-soft: #eff6ff;
 
       --purple: #7c3aed;
-      --purple-light: #f5f3ff;
 
-      --text: #172033;
-      --text-light: #64748b;
-      --muted: #94a3b8;
+      --green: #16a34a;
+      --green-soft: #f0fdf4;
 
+      --dark: #172033;
+      --gray: #64748b;
+      --light-gray: #94a3b8;
+
+      --background: #f8fafc;
       --white: #ffffff;
     }
 
 
-    /* ========================================
+    /* ==================================================
        RESET
-    ======================================== */
+    ================================================== */
 
     * {
       margin: 0;
@@ -42,11 +51,15 @@
       box-sizing: border-box;
     }
 
+
     html {
       scroll-behavior: smooth;
     }
 
+
     body {
+      min-height: 100vh;
+
       font-family:
         Inter,
         -apple-system,
@@ -56,38 +69,38 @@
         Arial,
         sans-serif;
 
-      min-height: 100vh;
+      color: var(--dark);
 
-      color: var(--text);
+      background: var(--background);
 
-      background: #f8fafc;
-
-      overflow: hidden;
+      overflow-x: hidden;
     }
 
 
-    /* ========================================
+    /* ==================================================
        BACKGROUND
-    ======================================== */
+    ================================================== */
 
     .background {
       position: fixed;
+
       inset: 0;
+
+      z-index: -10;
 
       overflow: hidden;
 
-      z-index: -2;
-
       background:
+
         radial-gradient(
           circle at 15% 15%,
-          rgba(37, 99, 235, 0.14),
+          rgba(37, 99, 235, 0.10),
           transparent 32%
         ),
 
         radial-gradient(
           circle at 85% 85%,
-          rgba(124, 58, 237, 0.14),
+          rgba(124, 58, 237, 0.09),
           transparent 32%
         ),
 
@@ -95,72 +108,59 @@
     }
 
 
-    .blob {
+    .glow {
       position: absolute;
 
-      border-radius: 50%;
-
-      filter: blur(75px);
-
-      opacity: 0.35;
-
-      animation: float 12s ease-in-out infinite;
-    }
-
-
-    .blob.one {
-      width: 360px;
-      height: 360px;
-
-      background: #60a5fa;
-
-      top: -130px;
-      left: -120px;
-    }
-
-
-    .blob.two {
       width: 420px;
       height: 420px;
 
+      border-radius: 50%;
+
+      filter: blur(100px);
+
+      opacity: 0.20;
+
+      pointer-events: none;
+
+      animation:
+        floatingGlow 14s ease-in-out infinite;
+    }
+
+
+    .glow-1 {
+      background: #60a5fa;
+
+      top: -180px;
+      left: -160px;
+    }
+
+
+    .glow-2 {
       background: #a78bfa;
 
-      right: -160px;
-      bottom: -160px;
+      right: -180px;
+      bottom: -180px;
 
-      animation-delay: -4s;
+      animation-delay: -7s;
     }
 
 
-    .blob.three {
-      width: 230px;
-      height: 230px;
-
-      background: #38bdf8;
-
-      left: 50%;
-      top: 45%;
-
-      animation-delay: -8s;
-    }
-
-
-    @keyframes float {
+    @keyframes floatingGlow {
 
       0%,
       100% {
-        transform: translate(0, 0) scale(1);
+        transform: translate3d(0, 0, 0);
       }
 
       50% {
-        transform: translate(35px, -30px) scale(1.08);
+        transform: translate3d(30px, -25px, 0);
       }
     }
 
 
-    /* ========================================
-       PAGE
-    ======================================== */
+    /* ==================================================
+       MAIN
+    ================================================== */
 
     .page {
       min-height: 100vh;
@@ -170,50 +170,55 @@
       align-items: center;
       justify-content: center;
 
-      padding: 30px 20px;
+      padding: 35px 20px;
     }
 
 
-    /* ========================================
+    /* ==================================================
        CARD
-    ======================================== */
+    ================================================== */
 
     .card {
-      width: 100%;
-      max-width: 760px;
+      position: relative;
 
-      padding: 58px 50px;
+      width: 100%;
+
+      max-width: 780px;
+
+      padding: 55px 50px 45px;
 
       text-align: center;
 
       background:
-        rgba(255, 255, 255, 0.78);
-
-      backdrop-filter: blur(22px);
-      -webkit-backdrop-filter: blur(22px);
+        rgba(255, 255, 255, 0.82);
 
       border:
-        1px solid rgba(255, 255, 255, 0.85);
+        1px solid rgba(255, 255, 255, 0.9);
 
       border-radius: 34px;
 
+      backdrop-filter: blur(25px);
+      -webkit-backdrop-filter: blur(25px);
+
       box-shadow:
-        0 30px 80px rgba(15, 23, 42, 0.12),
-        0 10px 30px rgba(37, 99, 235, 0.08);
+
+        0 35px 90px rgba(15, 23, 42, 0.10),
+
+        0 10px 30px rgba(37, 99, 235, 0.06);
 
       animation:
-        cardAppear 1s cubic-bezier(.16, 1, .3, 1);
+        cardEnter 0.9s cubic-bezier(.16, 1, .3, 1);
     }
 
 
-    @keyframes cardAppear {
+    @keyframes cardEnter {
 
       from {
         opacity: 0;
 
         transform:
           translateY(35px)
-          scale(0.96);
+          scale(0.97);
       }
 
       to {
@@ -226,139 +231,60 @@
     }
 
 
-    /* ========================================
-       LOGO
-    ======================================== */
+    /* ==================================================
+       BFT CONNECT
+    ================================================== */
 
-    .logo-container {
-      width: 128px;
-      height: 128px;
-
-      margin: 0 auto 25px;
-
+    .brand {
       display: flex;
 
       align-items: center;
       justify-content: center;
 
-      background: rgba(255, 255, 255, 0.95);
+      gap: 12px;
 
-      border-radius: 32px;
-
-      overflow: hidden;
-
-      box-shadow:
-        0 18px 40px rgba(15, 23, 42, 0.14);
+      margin-bottom: 35px;
 
       animation:
-        logoAppear 1s ease-out 0.2s both,
-        logoFloat 4s ease-in-out 1.2s infinite;
+        fadeUp 0.7s ease-out 0.15s both;
     }
 
 
-    .logo-container img {
-      width: 100%;
-      height: 100%;
+    .brand-logo {
+      width: 45px;
+      height: 45px;
 
       object-fit: contain;
 
-      padding: 8px;
+      border-radius: 12px;
+
+      background: white;
+
+      box-shadow:
+        0 6px 18px rgba(15, 23, 42, 0.08);
     }
 
 
-    @keyframes logoAppear {
+    .brand-name {
+      display: flex;
 
-      from {
-        opacity: 0;
+      flex-direction: column;
 
-        transform:
-          scale(0.5)
-          rotate(-8deg);
-      }
+      align-items: flex-start;
 
-      to {
-        opacity: 1;
-
-        transform:
-          scale(1)
-          rotate(0);
-      }
+      text-align: left;
     }
 
 
-    @keyframes logoFloat {
+    .brand-name strong {
+      font-size: 20px;
 
-      0%,
-      100% {
-        transform: translateY(0);
-      }
-
-      50% {
-        transform: translateY(-8px);
-      }
-    }
-
-
-    /* ========================================
-       BFT CONNECT
-    ======================================== */
-
-    .brand {
-      display: inline-flex;
-
-      align-items: center;
-      justify-content: center;
-
-      gap: 9px;
-
-      margin-bottom: 20px;
-
-      padding: 10px 18px;
-
-      border-radius: 999px;
-
-      background:
-        linear-gradient(
-          135deg,
-          rgba(37, 99, 235, 0.10),
-          rgba(124, 58, 237, 0.10)
-        );
-
-      border:
-        1px solid rgba(37, 99, 235, 0.12);
-
-      color: var(--blue);
-
-      font-size: 17px;
+      line-height: 1.1;
 
       font-weight: 800;
 
-      letter-spacing: 0.3px;
+      letter-spacing: -0.4px;
 
-      animation:
-        fadeUp 0.8s ease-out 0.4s both;
-    }
-
-
-    .brand-icon {
-      width: 8px;
-      height: 8px;
-
-      border-radius: 50%;
-
-      background:
-        linear-gradient(
-          135deg,
-          var(--blue),
-          var(--purple)
-        );
-
-      box-shadow:
-        0 0 0 5px rgba(37, 99, 235, 0.08);
-    }
-
-
-    .brand strong {
       background:
         linear-gradient(
           135deg,
@@ -373,24 +299,354 @@
     }
 
 
-    /* ========================================
-       TITRE
-    ======================================== */
+    .brand-name span {
+      margin-top: 3px;
+
+      color: var(--light-gray);
+
+      font-size: 11px;
+
+      font-weight: 600;
+
+      letter-spacing: 0.7px;
+
+      text-transform: uppercase;
+    }
+
+
+    /* ==================================================
+       CALENDAR AREA
+    ================================================== */
+
+    .calendar-wrapper {
+      position: relative;
+
+      width: 210px;
+      height: 175px;
+
+      margin: 0 auto 30px;
+
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+
+      animation:
+        calendarEnter
+        0.9s
+        cubic-bezier(.16, 1, .3, 1)
+        0.25s
+        both;
+    }
+
+
+    /* Halo */
+
+    .calendar-halo {
+      position: absolute;
+
+      width: 165px;
+      height: 165px;
+
+      border-radius: 50%;
+
+      background:
+        radial-gradient(
+          circle,
+          rgba(37, 99, 235, 0.13),
+          transparent 68%
+        );
+
+      animation:
+        haloPulse 4s ease-in-out infinite;
+    }
+
+
+    @keyframes haloPulse {
+
+      0%,
+      100% {
+        transform: scale(0.95);
+
+        opacity: 0.65;
+      }
+
+      50% {
+        transform: scale(1.08);
+
+        opacity: 1;
+      }
+    }
+
+
+    /* ==================================================
+       CALENDAR
+    ================================================== */
+
+    .calendar {
+      position: relative;
+
+      width: 170px;
+      height: 145px;
+
+      overflow: hidden;
+
+      background:
+        rgba(255, 255, 255, 0.95);
+
+      border-radius: 20px;
+
+      border:
+        1px solid rgba(37, 99, 235, 0.10);
+
+      box-shadow:
+
+        0 20px 45px rgba(37, 99, 235, 0.13),
+
+        0 5px 15px rgba(15, 23, 42, 0.06);
+
+      transform:
+        translateY(0);
+
+      animation:
+        calendarFloat
+        5s
+        ease-in-out
+        1.2s
+        infinite;
+    }
+
+
+    @keyframes calendarFloat {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-5px);
+      }
+    }
+
+
+    /* ==================================================
+       CALENDAR HEADER
+    ================================================== */
+
+    .calendar-header {
+      height: 38px;
+
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+
+      background:
+        linear-gradient(
+          135deg,
+          var(--blue),
+          var(--purple)
+        );
+
+      color: white;
+
+      font-size: 11px;
+
+      font-weight: 800;
+
+      letter-spacing: 1.5px;
+
+      text-transform: uppercase;
+    }
+
+
+    /* ==================================================
+       CALENDAR GRID
+    ================================================== */
+
+    .calendar-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(5, 1fr);
+
+      gap: 5px;
+
+      padding: 12px;
+    }
+
+
+    .calendar-cell {
+      height: 15px;
+
+      border-radius: 4px;
+
+      background:
+        #e8eef8;
+
+      opacity: 0;
+
+      transform: scale(0.5);
+
+      animation:
+        cellAppear
+        0.45s
+        ease-out
+        forwards;
+    }
+
+
+    .calendar-cell:nth-child(1) {
+      animation-delay: 1.0s;
+    }
+
+    .calendar-cell:nth-child(2) {
+      animation-delay: 1.08s;
+    }
+
+    .calendar-cell:nth-child(3) {
+      animation-delay: 1.16s;
+    }
+
+    .calendar-cell:nth-child(4) {
+      animation-delay: 1.24s;
+    }
+
+    .calendar-cell:nth-child(5) {
+      animation-delay: 1.32s;
+    }
+
+    .calendar-cell:nth-child(6) {
+      animation-delay: 1.40s;
+    }
+
+    .calendar-cell:nth-child(7) {
+      animation-delay: 1.48s;
+    }
+
+    .calendar-cell:nth-child(8) {
+      animation-delay: 1.56s;
+    }
+
+    .calendar-cell:nth-child(9) {
+      animation-delay: 1.64s;
+    }
+
+    .calendar-cell:nth-child(10) {
+      animation-delay: 1.72s;
+    }
+
+    .calendar-cell:nth-child(11) {
+      animation-delay: 1.80s;
+    }
+
+    .calendar-cell:nth-child(12) {
+      animation-delay: 1.88s;
+    }
+
+    .calendar-cell:nth-child(13) {
+      animation-delay: 1.96s;
+    }
+
+    .calendar-cell:nth-child(14) {
+      animation-delay: 2.04s;
+    }
+
+    .calendar-cell:nth-child(15) {
+      animation-delay: 2.12s;
+    }
+
+
+    .calendar-cell.highlight {
+      background:
+        linear-gradient(
+          135deg,
+          #60a5fa,
+          #8b5cf6
+        );
+
+      box-shadow:
+        0 0 10px rgba(37, 99, 235, 0.20);
+    }
+
+
+    @keyframes cellAppear {
+
+      from {
+        opacity: 0;
+
+        transform:
+          scale(0.5);
+      }
+
+      to {
+        opacity: 1;
+
+        transform:
+          scale(1);
+      }
+    }
+
+
+    @keyframes calendarEnter {
+
+      from {
+        opacity: 0;
+
+        transform:
+          translateY(20px)
+          scale(0.85);
+      }
+
+      to {
+        opacity: 1;
+
+        transform:
+          translateY(0)
+          scale(1);
+      }
+    }
+
+
+    /* ==================================================
+       TITLE
+    ================================================== */
+
+    .eyebrow {
+      display: inline-block;
+
+      margin-bottom: 12px;
+
+      color: var(--blue);
+
+      font-size: 12px;
+
+      font-weight: 800;
+
+      letter-spacing: 2px;
+
+      text-transform: uppercase;
+
+      animation:
+        fadeUp 0.7s ease-out 0.45s both;
+    }
+
 
     h1 {
       font-size:
-        clamp(38px, 7vw, 64px);
+        clamp(38px, 7vw, 60px);
 
       line-height: 1.05;
 
       letter-spacing: -2.5px;
 
-      margin-bottom: 20px;
+      margin-bottom: 22px;
 
       background:
         linear-gradient(
           135deg,
-          #172033 10%,
+          #172033 15%,
           var(--blue) 65%,
           var(--purple)
         );
@@ -401,94 +657,98 @@
       color: transparent;
 
       animation:
-        fadeUp 0.8s ease-out 0.5s both;
+        fadeUp 0.7s ease-out 0.55s both;
     }
 
 
-    /* ========================================
+    /* ==================================================
        DESCRIPTION
-    ======================================== */
+    ================================================== */
 
-    .subtitle {
+    .description {
       max-width: 560px;
 
       margin: 0 auto;
 
-      color: var(--text-light);
+      color: var(--gray);
 
-      font-size: 18px;
+      font-size: 17px;
 
-      line-height: 1.7;
+      line-height: 1.75;
 
       animation:
-        fadeUp 0.8s ease-out 0.6s both;
+        fadeUp 0.7s ease-out 0.65s both;
     }
 
 
-    /* ========================================
+    /* ==================================================
        STATUS
-    ======================================== */
+    ================================================== */
 
     .status {
       display: inline-flex;
 
       align-items: center;
 
-      gap: 11px;
+      gap: 10px;
 
-      margin-top: 32px;
+      margin-top: 30px;
 
-      padding: 13px 21px;
+      padding: 12px 18px;
 
       border-radius: 999px;
 
-      color: #1e3a8a;
+      color: #166534;
 
       background:
-        rgba(219, 234, 254, 0.82);
+        rgba(240, 253, 244, 0.9);
 
       border:
-        1px solid rgba(147, 197, 253, 0.35);
+        1px solid rgba(34, 197, 94, 0.14);
 
-      font-size: 14px;
+      font-size: 13px;
 
       font-weight: 700;
 
       animation:
-        fadeUp 0.8s ease-out 0.75s both;
+        fadeUp 0.7s ease-out 0.8s both;
     }
 
 
-    .dot {
+    .status-dot {
       position: relative;
 
-      width: 9px;
-      height: 9px;
-
-      border-radius: 50%;
-
-      background: var(--blue);
-    }
-
-
-    .dot::after {
-      content: "";
-
-      position: absolute;
-
-      inset: -5px;
+      width: 8px;
+      height: 8px;
 
       border-radius: 50%;
 
       background:
-        rgba(37, 99, 235, 0.25);
-
-      animation:
-        pulse 1.8s ease-out infinite;
+        var(--green);
     }
 
 
-    @keyframes pulse {
+    .status-dot::after {
+      content: "";
+
+      position: absolute;
+
+      inset: -4px;
+
+      border-radius: 50%;
+
+      background:
+        rgba(34, 197, 94, 0.18);
+
+      animation:
+        statusPulse
+        2s
+        ease-out
+        infinite;
+    }
+
+
+    @keyframes statusPulse {
 
       0% {
         transform: scale(0.7);
@@ -504,89 +764,25 @@
     }
 
 
-    /* ========================================
-       LOADER
-    ======================================== */
-
-    .loader {
-      display: flex;
-
-      justify-content: center;
-
-      gap: 7px;
-
-      margin-top: 29px;
-
-      animation:
-        fadeUp 0.8s ease-out 0.9s both;
-    }
-
-
-    .loader span {
-      width: 7px;
-      height: 7px;
-
-      border-radius: 50%;
-
-      background:
-        linear-gradient(
-          135deg,
-          var(--blue),
-          var(--purple)
-        );
-
-      animation:
-        loading 1.4s infinite ease-in-out;
-    }
-
-
-    .loader span:nth-child(2) {
-      animation-delay: 0.2s;
-    }
-
-
-    .loader span:nth-child(3) {
-      animation-delay: 0.4s;
-    }
-
-
-    @keyframes loading {
-
-      0%,
-      60%,
-      100% {
-        transform: translateY(0);
-
-        opacity: 0.35;
-      }
-
-      30% {
-        transform: translateY(-7px);
-
-        opacity: 1;
-      }
-    }
-
-
-    /* ========================================
+    /* ==================================================
        FOOTER
-    ======================================== */
+    ================================================== */
 
     .footer {
       margin-top: 38px;
 
-      color: var(--muted);
+      color: var(--light-gray);
 
-      font-size: 13px;
+      font-size: 12px;
 
       animation:
-        fadeUp 0.8s ease-out 1s both;
+        fadeUp 0.7s ease-out 1s both;
     }
 
 
-    /* ========================================
-       ANIMATION FADE
-    ======================================== */
+    /* ==================================================
+       FADE UP
+    ================================================== */
 
     @keyframes fadeUp {
 
@@ -594,7 +790,7 @@
         opacity: 0;
 
         transform:
-          translateY(15px);
+          translateY(14px);
       }
 
       to {
@@ -606,180 +802,245 @@
     }
 
 
-    /* ========================================
+    /* ==================================================
        MOBILE
-    ======================================== */
+    ================================================== */
 
     @media (max-width: 600px) {
 
-      body {
-        overflow: auto;
+      .page {
+        padding: 18px 14px;
       }
 
-      .page {
-        padding: 20px 15px;
-      }
 
       .card {
-        padding: 45px 23px;
+        padding:
+          38px 22px 32px;
 
         border-radius: 27px;
       }
 
-      .logo-container {
-        width: 105px;
-        height: 105px;
-
-        border-radius: 27px;
-
-        margin-bottom: 22px;
-      }
 
       .brand {
-        font-size: 15px;
-
-        padding: 9px 15px;
-
-        margin-bottom: 17px;
+        margin-bottom: 27px;
       }
 
-      h1 {
-        letter-spacing: -1.5px;
+
+      .brand-logo {
+        width: 40px;
+        height: 40px;
       }
 
-      .subtitle {
+
+      .brand-name strong {
+        font-size: 18px;
+      }
+
+
+      .calendar-wrapper {
+        width: 190px;
+        height: 160px;
+
+        margin-bottom: 24px;
+      }
+
+
+      .calendar {
+        width: 155px;
+        height: 132px;
+      }
+
+
+      .calendar-halo {
+        width: 150px;
+        height: 150px;
+      }
+
+
+      .description {
         font-size: 16px;
       }
 
-      .status {
-        font-size: 13px;
 
-        padding: 12px 17px;
+      .status {
+        font-size: 12px;
       }
     }
 
 
-    /* ========================================
+    /* ==================================================
        ACCESSIBILITÉ
-    ======================================== */
+    ================================================== */
 
     @media (prefers-reduced-motion: reduce) {
 
       *,
       *::before,
       *::after {
-        animation-duration: 0.01ms !important;
+        animation-duration:
+          0.01ms !important;
 
-        animation-iteration-count: 1 !important;
+        animation-iteration-count:
+          1 !important;
 
-        scroll-behavior: auto !important;
+        scroll-behavior:
+          auto !important;
       }
     }
 
   </style>
+
 </head>
 
 
 <body>
 
-  <!-- ======================================
+
+  <!-- ==================================================
        BACKGROUND
-  ====================================== -->
+  ================================================== -->
 
   <div class="background">
 
-    <div class="blob one"></div>
+    <div class="glow glow-1"></div>
 
-    <div class="blob two"></div>
-
-    <div class="blob three"></div>
+    <div class="glow glow-2"></div>
 
   </div>
 
 
-  <!-- ======================================
-       PAGE
-  ====================================== -->
+  <!-- ==================================================
+       MAIN
+  ================================================== -->
 
   <main class="page">
+
 
     <section class="card">
 
 
-      <!-- LOGO -->
+      <!-- ==================================================
+           BFT CONNECT
+      ================================================== -->
 
-      <div class="logo-container">
+      <div class="brand">
 
         <img
+          class="brand-logo"
           src="https://bftunis.com/wp-content/uploads/2026/06/icon-512.png"
           alt="BFT"
         >
 
+        <div class="brand-name">
+
+          <strong>
+            BFT Connect
+          </strong>
+
+          <span>
+            Votre espace numérique
+          </span>
+
+        </div>
+
       </div>
 
 
-      <!-- BFT CONNECT -->
+      <!-- ==================================================
+           CALENDRIER ANIMÉ
+      ================================================== -->
 
-      <div class="brand">
+      <div class="calendar-wrapper">
 
-        <span class="brand-icon"></span>
+        <div class="calendar-halo"></div>
 
-        <strong>BFT Connect</strong>
+
+        <div class="calendar">
+
+
+          <div class="calendar-header">
+            EMPLOI DU TEMPS
+          </div>
+
+
+          <div class="calendar-grid">
+
+            <div class="calendar-cell highlight"></div>
+            <div class="calendar-cell"></div>
+            <div class="calendar-cell"></div>
+            <div class="calendar-cell"></div>
+            <div class="calendar-cell highlight"></div>
+
+            <div class="calendar-cell"></div>
+            <div class="calendar-cell highlight"></div>
+            <div class="calendar-cell"></div>
+            <div class="calendar-cell"></div>
+            <div class="calendar-cell"></div>
+
+            <div class="calendar-cell"></div>
+            <div class="calendar-cell"></div>
+            <div class="calendar-cell highlight"></div>
+            <div class="calendar-cell"></div>
+            <div class="calendar-cell"></div>
+
+          </div>
+
+        </div>
 
       </div>
 
 
-      <!-- TITRE -->
+      <!-- ==================================================
+           TITRE
+      ================================================== -->
+
+      <span class="eyebrow">
+        Nouvelle fonctionnalité
+      </span>
+
 
       <h1>
         Emploi du temps
       </h1>
 
 
-      <!-- DESCRIPTION -->
+      <!-- ==================================================
+           MESSAGE
+      ================================================== -->
 
-      <p class="subtitle">
+      <p class="description">
 
-        Votre emploi du temps est actuellement
-        en préparation.
+        Votre emploi du temps sera bientôt
+        disponible dans BFT Connect.
 
         <br>
 
-        Il sera bientôt disponible
-        sur cette plateforme.
+        Nous finalisons actuellement cette fonctionnalité
+        afin de vous offrir une expérience simple et pratique.
 
       </p>
 
 
-      <!-- STATUS -->
+      <!-- ==================================================
+           STATUS
+      ================================================== -->
 
       <div class="status">
 
-        <span class="dot"></span>
+        <span class="status-dot"></span>
 
         Bientôt disponible
 
       </div>
 
 
-      <!-- LOADER -->
-
-      <div class="loader">
-
-        <span></span>
-
-        <span></span>
-
-        <span></span>
-
-      </div>
-
-
-      <!-- FOOTER -->
+      <!-- ==================================================
+           FOOTER
+      ================================================== -->
 
       <p class="footer">
 
-        Merci de votre patience.
+        BFT Connect · Votre espace numérique
 
       </p>
 
@@ -790,4 +1051,5 @@
 
 
 </body>
+
 </html>
