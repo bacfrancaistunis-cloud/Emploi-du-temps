@@ -1,1 +1,88 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Emploi du temps</title>
 
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #2563eb, #7c3aed);
+      color: white;
+      text-align: center;
+    }
+
+    .container {
+      padding: 40px 25px;
+      max-width: 650px;
+    }
+
+    .icon {
+      font-size: 70px;
+      margin-bottom: 25px;
+    }
+
+    h1 {
+      font-size: 42px;
+      margin-bottom: 15px;
+    }
+
+    p {
+      font-size: 20px;
+      opacity: 0.9;
+      line-height: 1.6;
+    }
+
+    .badge {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 10px 20px;
+      border-radius: 30px;
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      font-size: 16px;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 32px;
+      }
+
+      p {
+        font-size: 18px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="icon">📅</div>
+
+    <h1>Emploi du temps</h1>
+
+    <p>
+      Votre emploi du temps sera bientôt disponible.
+      <br>
+      Merci de votre patience !
+    </p>
+
+    <div class="badge">
+      🚀 Bientôt disponible
+    </div>
+  </div>
+
+</body>
+</html>
