@@ -4,14 +4,37 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Emploi du temps | BFT</title>
+  <title>BFT Connect | Emploi du temps</title>
 
-  <meta name="description" content="L'emploi du temps sera bientôt disponible.">
+  <meta
+    name="description"
+    content="BFT Connect — Votre emploi du temps sera bientôt disponible."
+  >
 
   <style>
-    /* =========================
-       BASE
-    ========================= */
+    /* ========================================
+       VARIABLES
+    ======================================== */
+
+    :root {
+      --blue: #2563eb;
+      --blue-dark: #1d4ed8;
+      --blue-light: #eff6ff;
+
+      --purple: #7c3aed;
+      --purple-light: #f5f3ff;
+
+      --text: #172033;
+      --text-light: #64748b;
+      --muted: #94a3b8;
+
+      --white: #ffffff;
+    }
+
+
+    /* ========================================
+       RESET
+    ======================================== */
 
     * {
       margin: 0;
@@ -19,86 +42,113 @@
       box-sizing: border-box;
     }
 
-    :root {
-      --blue: #2563eb;
-      --blue-dark: #1e40af;
-      --purple: #7c3aed;
-      --white: #ffffff;
-      --text: #172033;
-    }
-
     html {
       scroll-behavior: smooth;
     }
 
     body {
-      font-family: Inter, Arial, Helvetica, sans-serif;
+      font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Arial,
+        sans-serif;
+
       min-height: 100vh;
+
       color: var(--text);
+
       background: #f8fafc;
+
       overflow: hidden;
     }
 
 
-    /* =========================
-       FOND ANIMÉ
-    ========================= */
+    /* ========================================
+       BACKGROUND
+    ======================================== */
 
     .background {
       position: fixed;
       inset: 0;
+
       overflow: hidden;
+
       z-index: -2;
+
       background:
         radial-gradient(
-          circle at 20% 20%,
-          rgba(37, 99, 235, 0.15),
-          transparent 35%
+          circle at 15% 15%,
+          rgba(37, 99, 235, 0.14),
+          transparent 32%
         ),
+
         radial-gradient(
-          circle at 80% 80%,
-          rgba(124, 58, 237, 0.15),
-          transparent 35%
+          circle at 85% 85%,
+          rgba(124, 58, 237, 0.14),
+          transparent 32%
         ),
+
         #f8fafc;
     }
 
+
     .blob {
       position: absolute;
+
       border-radius: 50%;
-      filter: blur(70px);
+
+      filter: blur(75px);
+
       opacity: 0.35;
+
       animation: float 12s ease-in-out infinite;
     }
 
+
     .blob.one {
-      width: 350px;
-      height: 350px;
+      width: 360px;
+      height: 360px;
+
       background: #60a5fa;
-      top: -120px;
-      left: -100px;
+
+      top: -130px;
+      left: -120px;
     }
 
+
     .blob.two {
-      width: 400px;
-      height: 400px;
+      width: 420px;
+      height: 420px;
+
       background: #a78bfa;
-      right: -150px;
-      bottom: -150px;
+
+      right: -160px;
+      bottom: -160px;
+
       animation-delay: -4s;
     }
 
+
     .blob.three {
-      width: 220px;
-      height: 220px;
+      width: 230px;
+      height: 230px;
+
       background: #38bdf8;
+
       left: 50%;
       top: 45%;
+
       animation-delay: -8s;
     }
 
+
     @keyframes float {
-      0%, 100% {
+
+      0%,
+      100% {
         transform: translate(0, 0) scale(1);
       }
 
@@ -108,96 +158,138 @@
     }
 
 
-    /* =========================
+    /* ========================================
        PAGE
-    ========================= */
+    ======================================== */
 
     .page {
       min-height: 100vh;
+
       display: flex;
+
       align-items: center;
       justify-content: center;
+
       padding: 30px 20px;
     }
 
+
+    /* ========================================
+       CARD
+    ======================================== */
+
     .card {
       width: 100%;
-      max-width: 720px;
-      padding: 65px 50px;
+      max-width: 760px;
+
+      padding: 58px 50px;
+
       text-align: center;
 
-      background: rgba(255, 255, 255, 0.72);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
+      background:
+        rgba(255, 255, 255, 0.78);
 
-      border: 1px solid rgba(255, 255, 255, 0.8);
-      border-radius: 32px;
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+
+      border:
+        1px solid rgba(255, 255, 255, 0.85);
+
+      border-radius: 34px;
 
       box-shadow:
         0 30px 80px rgba(15, 23, 42, 0.12),
-        0 8px 25px rgba(37, 99, 235, 0.08);
+        0 10px 30px rgba(37, 99, 235, 0.08);
 
-      animation: cardAppear 1s cubic-bezier(.16, 1, .3, 1);
+      animation:
+        cardAppear 1s cubic-bezier(.16, 1, .3, 1);
     }
 
+
     @keyframes cardAppear {
+
       from {
         opacity: 0;
-        transform: translateY(35px) scale(0.96);
+
+        transform:
+          translateY(35px)
+          scale(0.96);
       }
 
       to {
         opacity: 1;
-        transform: translateY(0) scale(1);
+
+        transform:
+          translateY(0)
+          scale(1);
       }
     }
 
 
-    /* =========================
-       LOGO / CALENDRIER
-    ========================= */
+    /* ========================================
+       LOGO
+    ======================================== */
 
-    .calendar {
-      width: 110px;
-      height: 110px;
-      margin: 0 auto 30px;
+    .logo-container {
+      width: 128px;
+      height: 128px;
+
+      margin: 0 auto 25px;
 
       display: flex;
+
       align-items: center;
       justify-content: center;
 
-      font-size: 52px;
+      background: rgba(255, 255, 255, 0.95);
 
-      background: linear-gradient(
-        135deg,
-        var(--blue),
-        var(--purple)
-      );
+      border-radius: 32px;
 
-      border-radius: 30px;
+      overflow: hidden;
 
       box-shadow:
-        0 18px 35px rgba(37, 99, 235, 0.25);
+        0 18px 40px rgba(15, 23, 42, 0.14);
 
       animation:
-        calendarAppear 1s ease-out 0.2s both,
-        calendarFloat 4s ease-in-out 1.2s infinite;
+        logoAppear 1s ease-out 0.2s both,
+        logoFloat 4s ease-in-out 1.2s infinite;
     }
 
-    @keyframes calendarAppear {
+
+    .logo-container img {
+      width: 100%;
+      height: 100%;
+
+      object-fit: contain;
+
+      padding: 8px;
+    }
+
+
+    @keyframes logoAppear {
+
       from {
         opacity: 0;
-        transform: scale(0.5) rotate(-10deg);
+
+        transform:
+          scale(0.5)
+          rotate(-8deg);
       }
 
       to {
         opacity: 1;
-        transform: scale(1) rotate(0);
+
+        transform:
+          scale(1)
+          rotate(0);
       }
     }
 
-    @keyframes calendarFloat {
-      0%, 100% {
+
+    @keyframes logoFloat {
+
+      0%,
+      100% {
         transform: translateY(0);
       }
 
@@ -207,89 +299,165 @@
     }
 
 
-    /* =========================
-       TEXTE
-    ========================= */
+    /* ========================================
+       BFT CONNECT
+    ======================================== */
 
-    .label {
-      display: inline-block;
-      margin-bottom: 15px;
+    .brand {
+      display: inline-flex;
 
-      color: var(--blue);
-      font-size: 13px;
-      font-weight: 800;
-      letter-spacing: 2px;
-      text-transform: uppercase;
+      align-items: center;
+      justify-content: center;
 
-      animation: fadeUp 0.8s ease-out 0.4s both;
-    }
+      gap: 9px;
 
-    h1 {
-      font-size: clamp(38px, 7vw, 64px);
-      line-height: 1.05;
-      letter-spacing: -2px;
       margin-bottom: 20px;
 
-      background: linear-gradient(
-        135deg,
-        #172033,
-        var(--blue),
-        var(--purple)
-      );
+      padding: 10px 18px;
+
+      border-radius: 999px;
+
+      background:
+        linear-gradient(
+          135deg,
+          rgba(37, 99, 235, 0.10),
+          rgba(124, 58, 237, 0.10)
+        );
+
+      border:
+        1px solid rgba(37, 99, 235, 0.12);
+
+      color: var(--blue);
+
+      font-size: 17px;
+
+      font-weight: 800;
+
+      letter-spacing: 0.3px;
+
+      animation:
+        fadeUp 0.8s ease-out 0.4s both;
+    }
+
+
+    .brand-icon {
+      width: 8px;
+      height: 8px;
+
+      border-radius: 50%;
+
+      background:
+        linear-gradient(
+          135deg,
+          var(--blue),
+          var(--purple)
+        );
+
+      box-shadow:
+        0 0 0 5px rgba(37, 99, 235, 0.08);
+    }
+
+
+    .brand strong {
+      background:
+        linear-gradient(
+          135deg,
+          var(--blue),
+          var(--purple)
+        );
 
       -webkit-background-clip: text;
       background-clip: text;
+
+      color: transparent;
+    }
+
+
+    /* ========================================
+       TITRE
+    ======================================== */
+
+    h1 {
+      font-size:
+        clamp(38px, 7vw, 64px);
+
+      line-height: 1.05;
+
+      letter-spacing: -2.5px;
+
+      margin-bottom: 20px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #172033 10%,
+          var(--blue) 65%,
+          var(--purple)
+        );
+
+      -webkit-background-clip: text;
+      background-clip: text;
+
       color: transparent;
 
-      animation: fadeUp 0.8s ease-out 0.5s both;
+      animation:
+        fadeUp 0.8s ease-out 0.5s both;
     }
+
+
+    /* ========================================
+       DESCRIPTION
+    ======================================== */
 
     .subtitle {
-      max-width: 520px;
+      max-width: 560px;
+
       margin: 0 auto;
 
-      color: #64748b;
+      color: var(--text-light);
+
       font-size: 18px;
+
       line-height: 1.7;
 
-      animation: fadeUp 0.8s ease-out 0.6s both;
-    }
-
-    @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(15px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      animation:
+        fadeUp 0.8s ease-out 0.6s both;
     }
 
 
-    /* =========================
-       BADGE
-    ========================= */
+    /* ========================================
+       STATUS
+    ======================================== */
 
     .status {
       display: inline-flex;
+
       align-items: center;
-      gap: 10px;
+
+      gap: 11px;
 
       margin-top: 32px;
-      padding: 13px 20px;
+
+      padding: 13px 21px;
 
       border-radius: 999px;
 
       color: #1e3a8a;
-      background: rgba(219, 234, 254, 0.8);
+
+      background:
+        rgba(219, 234, 254, 0.82);
+
+      border:
+        1px solid rgba(147, 197, 253, 0.35);
 
       font-size: 14px;
+
       font-weight: 700;
 
-      animation: fadeUp 0.8s ease-out 0.75s both;
+      animation:
+        fadeUp 0.8s ease-out 0.75s both;
     }
+
 
     .dot {
       position: relative;
@@ -298,96 +466,149 @@
       height: 9px;
 
       border-radius: 50%;
-      background: #2563eb;
+
+      background: var(--blue);
     }
+
 
     .dot::after {
       content: "";
 
       position: absolute;
+
       inset: -5px;
 
       border-radius: 50%;
-      background: rgba(37, 99, 235, 0.25);
 
-      animation: pulse 1.8s ease-out infinite;
+      background:
+        rgba(37, 99, 235, 0.25);
+
+      animation:
+        pulse 1.8s ease-out infinite;
     }
 
+
     @keyframes pulse {
+
       0% {
         transform: scale(0.7);
+
         opacity: 1;
       }
 
       100% {
         transform: scale(2.2);
+
         opacity: 0;
       }
     }
 
 
-    /* =========================
+    /* ========================================
        LOADER
-    ========================= */
+    ======================================== */
 
     .loader {
       display: flex;
+
       justify-content: center;
+
       gap: 7px;
 
-      margin-top: 30px;
+      margin-top: 29px;
 
-      animation: fadeUp 0.8s ease-out 0.9s both;
+      animation:
+        fadeUp 0.8s ease-out 0.9s both;
     }
+
 
     .loader span {
       width: 7px;
       height: 7px;
 
       border-radius: 50%;
-      background: var(--blue);
 
-      animation: loading 1.4s infinite ease-in-out;
+      background:
+        linear-gradient(
+          135deg,
+          var(--blue),
+          var(--purple)
+        );
+
+      animation:
+        loading 1.4s infinite ease-in-out;
     }
+
 
     .loader span:nth-child(2) {
       animation-delay: 0.2s;
     }
 
+
     .loader span:nth-child(3) {
       animation-delay: 0.4s;
     }
 
+
     @keyframes loading {
-      0%, 60%, 100% {
+
+      0%,
+      60%,
+      100% {
         transform: translateY(0);
-        opacity: 0.4;
+
+        opacity: 0.35;
       }
 
       30% {
         transform: translateY(-7px);
+
         opacity: 1;
       }
     }
 
 
-    /* =========================
+    /* ========================================
        FOOTER
-    ========================= */
+    ======================================== */
 
     .footer {
-      margin-top: 40px;
+      margin-top: 38px;
 
-      color: #94a3b8;
+      color: var(--muted);
+
       font-size: 13px;
 
-      animation: fadeUp 0.8s ease-out 1s both;
+      animation:
+        fadeUp 0.8s ease-out 1s both;
     }
 
 
-    /* =========================
+    /* ========================================
+       ANIMATION FADE
+    ======================================== */
+
+    @keyframes fadeUp {
+
+      from {
+        opacity: 0;
+
+        transform:
+          translateY(15px);
+      }
+
+      to {
+        opacity: 1;
+
+        transform:
+          translateY(0);
+      }
+    }
+
+
+    /* ========================================
        MOBILE
-    ========================= */
+    ======================================== */
 
     @media (max-width: 600px) {
 
@@ -400,20 +621,30 @@
       }
 
       .card {
-        padding: 45px 25px;
-        border-radius: 25px;
+        padding: 45px 23px;
+
+        border-radius: 27px;
       }
 
-      .calendar {
-        width: 90px;
-        height: 90px;
-        font-size: 42px;
-        border-radius: 25px;
-        margin-bottom: 25px;
+      .logo-container {
+        width: 105px;
+        height: 105px;
+
+        border-radius: 27px;
+
+        margin-bottom: 22px;
+      }
+
+      .brand {
+        font-size: 15px;
+
+        padding: 9px 15px;
+
+        margin-bottom: 17px;
       }
 
       h1 {
-        letter-spacing: -1px;
+        letter-spacing: -1.5px;
       }
 
       .subtitle {
@@ -422,13 +653,15 @@
 
       .status {
         font-size: 13px;
+
+        padding: 12px 17px;
       }
     }
 
 
-    /* =========================
+    /* ========================================
        ACCESSIBILITÉ
-    ========================= */
+    ======================================== */
 
     @media (prefers-reduced-motion: reduce) {
 
@@ -436,64 +669,125 @@
       *::before,
       *::after {
         animation-duration: 0.01ms !important;
+
         animation-iteration-count: 1 !important;
+
         scroll-behavior: auto !important;
       }
     }
+
   </style>
 </head>
 
 
 <body>
 
-  <!-- Arrière-plan animé -->
+  <!-- ======================================
+       BACKGROUND
+  ====================================== -->
+
   <div class="background">
+
     <div class="blob one"></div>
+
     <div class="blob two"></div>
+
     <div class="blob three"></div>
+
   </div>
 
 
-  <!-- Contenu principal -->
+  <!-- ======================================
+       PAGE
+  ====================================== -->
+
   <main class="page">
 
     <section class="card">
 
-      <div class="calendar">
-        📅
+
+      <!-- LOGO -->
+
+      <div class="logo-container">
+
+        <img
+          src="https://bftunis.com/wp-content/uploads/2026/06/icon-512.png"
+          alt="BFT"
+        >
+
       </div>
 
-      <span class="label">
-        BFT Connect
-      </span>
+
+      <!-- BFT CONNECT -->
+
+      <div class="brand">
+
+        <span class="brand-icon"></span>
+
+        <strong>BFT Connect</strong>
+
+      </div>
+
+
+      <!-- TITRE -->
 
       <h1>
         Emploi du temps
       </h1>
 
+
+      <!-- DESCRIPTION -->
+
       <p class="subtitle">
-        Votre emploi du temps est actuellement en préparation.
-        Il sera bientôt disponible sur cette plateforme.
+
+        Votre emploi du temps est actuellement
+        en préparation.
+
+        <br>
+
+        Il sera bientôt disponible
+        sur cette plateforme.
+
       </p>
+
+
+      <!-- STATUS -->
 
       <div class="status">
+
         <span class="dot"></span>
+
         Bientôt disponible
+
       </div>
+
+
+      <!-- LOADER -->
 
       <div class="loader">
+
         <span></span>
+
         <span></span>
+
         <span></span>
+
       </div>
 
+
+      <!-- FOOTER -->
+
       <p class="footer">
+
         Merci de votre patience.
+
       </p>
+
 
     </section>
 
   </main>
+
 
 </body>
 </html>
